@@ -1,15 +1,24 @@
 module.exports = {
-    content: [
-        './components/**/*.{js,vue,ts}',
-        './pages/**/*.vue',
-        './app.vue',
-        './nuxt.config.ts'
-    ],
     theme: {
         extend: {
             colors: {
-                primary: '#3B82F6',
-                secondary: '#10B981'
+                primary: {
+                    DEFAULT: '#3B82F6',
+                    50: '#EFF6FF',
+                    100: '#DBEAFE',
+                    500: '#3B82F6',
+                    600: '#2563EB'
+                },
+                secondary: {
+                    DEFAULT: '#10B981',
+                    50: '#ECFDF5',
+                    100: '#D1FAE5',
+                    500: '#10B981',
+                    600: '#059669'
+                }
+            },
+            fontFamily: {
+                sans: ['Inter', 'sans-serif']
             }
         }
     }

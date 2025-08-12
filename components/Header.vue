@@ -1,9 +1,10 @@
+<!-- En tu Header.vue -->
 <template>
   <header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="container mx-auto px-6 py-4">
-      <nav class="flex justify-between items-center">
-        <NuxtLink to="/" class="text-xl font-bold text-gray-900">TuNombre</NuxtLink>
-        <div class="flex space-x-6">
+    <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
+      <nav class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <NuxtLink to="/" class="text-xl font-bold text-gray-900">Fabian</NuxtLink>
+        <div class="flex gap-4 sm:gap-6">
           <NuxtLink
               v-for="link in links"
               :key="link.path"
