@@ -1,33 +1,33 @@
 <template>
-  <div class="project-card group">
-    <div class="overflow-hidden rounded-t-lg">
-      <NuxtImg
+  <NuxtLink
+      :to="project.link"
+      class="project-card group"
+  >
+    <div class="h-48 overflow-hidden">
+      <img
           :src="project.image"
           :alt="project.title"
-          class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-      />
+          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      >
     </div>
-    <div class="p-6 border border-t-0 border-gray-200 rounded-b-lg">
-      <h3 class="text-xl font-bold mb-2 text-gray-900">{{ project.title }}</h3>
-      <p class="text-gray-600 mb-4">{{ project.description }}</p>
+    <div class="p-6">
+      <h3 class="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">
+        {{ project.title }}
+      </h3>
+      <p class="text-gray-400 mb-4">
+        {{ project.description }}
+      </p>
       <div class="flex flex-wrap gap-2">
         <span
             v-for="tag in project.tags"
             :key="tag"
-            class="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full"
+            class="px-3 py-1 bg-gray-700 rounded-full text-sm text-gray-300"
         >
           {{ tag }}
         </span>
       </div>
-      <NuxtLink
-          v-if="project.link"
-          :to="project.link"
-          class="mt-4 inline-block text-blue-600 hover:underline"
-      >
-        Ver proyecto →
-      </NuxtLink>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script setup>
@@ -38,13 +38,3 @@ defineProps({
   }
 })
 </script>
-
-<style>
-.project-card {
-  transition: all 0.3s ease;
-}
-.project-card:hover {
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  transform: translateY(-4px);
-}
-</style>

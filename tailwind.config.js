@@ -1,25 +1,29 @@
+// tailwind.config.js
 module.exports = {
+    darkMode: 'class',
+    content: [
+        './components/**/*.{js,vue,ts}',
+        './layouts/**/*.vue',
+        './pages/**/*.vue',
+        './plugins/**/*.{js,ts}',
+        './nuxt.config.{js,ts}',
+        './app.vue',
+        './node_modules/@nuxt/ui/dist/**/*.{js,mjs}'
+    ],
     theme: {
         extend: {
             colors: {
                 primary: {
-                    DEFAULT: '#3B82F6',
-                    50: '#EFF6FF',
-                    100: '#DBEAFE',
-                    500: '#3B82F6',
-                    600: '#2563EB'
-                },
-                secondary: {
-                    DEFAULT: '#10B981',
-                    50: '#ECFDF5',
-                    100: '#D1FAE5',
-                    500: '#10B981',
+                    400: '#34d399',
+                    500: '#10b981',
                     600: '#059669'
+                },
+                dark: {
+                    800: '#1f2937',
+                    900: '#111827'
                 }
-            },
-            fontFamily: {
-                sans: ['Inter', 'sans-serif']
             }
-        }
-    }
+        },
+    },
+    plugins: [],
 }

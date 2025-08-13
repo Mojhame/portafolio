@@ -1,28 +1,64 @@
-<!-- En tu Header.vue -->
 <template>
-  <header class="bg-white shadow-sm sticky top-0 z-50">
-    <div class="container mx-auto px-4 sm:px-6 py-3 sm:py-4">
-      <nav class="flex flex-col sm:flex-row justify-between items-center gap-4">
-        <NuxtLink to="/" class="text-xl font-bold text-gray-900">Fabian</NuxtLink>
-        <div class="flex gap-4 sm:gap-6">
-          <NuxtLink
-              v-for="link in links"
-              :key="link.path"
-              :to="link.path"
-              class="text-gray-600 hover:text-primary transition-colors"
-          >
-            {{ link.label }}
-          </NuxtLink>
-        </div>
-      </nav>
+  <nav :class="{ scrolled }">
+    <div>
+      <NuxtLink
+          v-for="link in links"
+          :key="link.path"
+          :to="link.path"
+          active-class="active"
+      >
+        {{ link.name }}
+      </NuxtLink>
+
+      <button @click="toggleDarkMode" class="theme-toggle">
+        <i v-if="!isDark" class="pi pi-moon"></i>
+        <i v-else class="pi pi-sun"></i>
+      </button>
     </div>
-  </header>
+  </nav>
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
 const links = [
-  { path: '/', label: 'Inicio' },
-  { path: '/proyectos', label: 'Proyectos' },
-  { path: '/about', label: 'Sobre mí' }
+  { name: 'Inicio', path: '/' },
+  { name: 'Proyectos', path: '/proyectos' },
+  { name: 'Sobre mí', path: '/about' }
 ]
+
+const isDark = ref(false)
+const scrolled = ref(false)
+
+const toggleDarkMode = () => {
+  isDark.value = !isDark.value
+  if (isDark.value) {
+    document.documentElement.classList.add('dark')
+    localStorage.setItem('color-theme', 'dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+    localStorage.setItem('color-theme', 'light')
+  }
+}
+
+const onScroll = () => {
+  scrolled.value = window.scrollY > 10
+}
+
+onMounted(() => {
+  if (
+      localStorage.getItem('color-theme') === 'dark' ||
+      (!localStorage.getItem('color-theme') &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches)
+  ) {
+    isDark.value = true
+    document.documentElement.classList.add('dark')
+  }
+
+  window.addEventListener('scroll', onScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', onScroll)
+})
 </script>
