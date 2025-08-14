@@ -2,6 +2,7 @@
 <template>
   <div>
     <Header  />
+    <LeavesAnimation />
     <main>
       <NuxtPage />
     </main>
